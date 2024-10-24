@@ -1,0 +1,44 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$sXsXRrQDApYkQiVpWqDZ8D$n8myBsTaFbzblT66gebbnEYbkTM4XP9Hs8GwTRB8cN8=",
+      "last_login": "2024-10-24T19:00:18.679Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "date_joined": "2024-10-24T18:54:56.053Z",
+      "email": "globallife@mail.ru",
+      "phone": null,
+      "avatar": "",
+      "country": null,
+      "is_active": true,
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "201023",
+      "last_login": "2024-10-24T19:01:29Z",
+      "is_superuser": false,
+      "first_name": "Юрий",
+      "last_name": "Ставр",
+      "is_staff": true,
+      "date_joined": "2024-10-24T19:01:21Z",
+      "email": "grey-matter88@mail.ru",
+      "phone": "123456789",
+      "avatar": "users/avatars/Снимок_экрана_от_2024-10-24_19-40-41.png",
+      "country": "Russian",
+      "is_active": true,
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

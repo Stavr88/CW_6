@@ -1,0 +1,28 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    {% if user == object.owner or user.is_superuser %}
+        <div class="container">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <p>Хотите удалить рассылку
+                                        "Тема: {{ object.mail_message.subject }}"
+                                        "Начало: {{ object.start_datetime }}"
+                                        "Окончание: {{ object.end_datetime }}"
+                                        "Статус: {{ object.status }}"?</p>
+                                    <button type="submit" class="btn btn-danger">Подтвердить</button>
+                                    <a href="{% url 'email_list:mailing_settings_list' %}" class="btn btn-warning">Отмена</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

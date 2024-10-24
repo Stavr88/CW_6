@@ -1,0 +1,26 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    {% if user == object.owner or user.is_superuser %}
+        <div class="container">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <p>Хотите удалить клиента
+                                        "{{ object.first_name }} {{ object.last_name }} {{ object.patronymic }}"
+                                        email: {{ object.email }}?</p>
+                                    <button type="submit" class="btn btn-danger">Подтвердить</button>
+                                    <a href="{% url 'email_list:client_list' %}" class="btn btn-warning">Отмена</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

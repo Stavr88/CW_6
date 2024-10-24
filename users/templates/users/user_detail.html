@@ -1,0 +1,32 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    {% load my_tag %}
+    <div class="container">
+        <div class="row text-center">
+            {% if user == object or user.is_superuser or perms.users.view_list_user %}
+                <div class="col-3">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">{{ object.email }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{ object.phone }}</h1>
+                            <img class="card-img-top" src="{% my_media object.avatar %}"
+                                 alt="Здесь должно быть изображение" style="max-width: 300px; max-height: 300px; ">
+                            <h1 class="card-title pricing-card-title">{{ object.country }}</h1>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+                <div class="ms-5">
+                    <a class="p-2 btn btn-outline-primary"
+                       href="{% url 'users:user_change' object.pk %}">Изменить</a>
+                    <a class="p-2 btn btn-outline-secondary"
+                       href="{% url 'users:users_list' %}">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

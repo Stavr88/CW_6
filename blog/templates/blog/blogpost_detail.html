@@ -1,0 +1,27 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    {% load my_tag %}
+
+    <div class="container">
+        <div class="col">
+            <h2 class="text-center">{{ object.title }}</h2>
+            <img class="card-img-top" src="{% my_media object.preview %}" alt="Здесь должно быть изображение"
+                 style="max-width: 300px; max-height: 300px; ">
+            <div>
+                <h4>{{ object.body }}</h4>
+            </div>
+            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+                <div class="card-footer">
+                    Просмотры: {{ object.count_views }}
+                </div>
+                {% if user.is_superuser %}
+                <nav class="ms-5">
+                    <a class="p-2 btn btn-outline-primary" href="{% url 'blog:edit_post' object.pk %}">Изменить</a>
+                    <a class="p-2 btn btn-outline-danger" href="{% url 'blog:delete_post' object.pk %}">Удалить</a>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

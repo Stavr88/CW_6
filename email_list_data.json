@@ -1,0 +1,14 @@
+[
+  {
+    "model": "email_list.client",
+    "pk": 1,
+    "fields": {
+      "email": "grey-matter88@mail.ru",
+      "first_name": "Вася",
+      "last_name": "Пупкин",
+      "patronymic": "Петрович",
+      "description": "",
+      "owner": 1
+    }
+  }
+]

@@ -1,0 +1,36 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            {% if object %}
+                                {% if user == object.owner or user.is_superuser %}
+                                    Изменить данные клиента
+                                {% endif %}
+                            {% else %}
+                                Добавление клиента
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">
+                            {% if object %}
+                                Сохранить
+                            {% else %}
+                                Создать
+                            {% endif %}
+                        </button>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="col-12 mb-3">
+            {% if user.is_authenticated %}
+                <a class="btn btn-outline-primary" href="{% url 'email_list:mailing_message_create' %}">Создать
+                    сообщение</a>
+            {% endif %}
+        </div>
+        <div class="row text-center">
+            {% for object in object_list %}
+                {% if user == object.owner or user.is_superuser %}
+                    <div class="col-3">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-header">
+                                <h4 class="my-0 font-weight-normal">{{ object.subject }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                    <li>{{ object.message|slice:300 }}</li>
+                                </ul>
+                                <div class="d-grid gap-2 col-10 mx-auto">
+                                    <a class="btn btn-lg btn-block btn-outline-info"
+                                       href="{% url 'email_list:mailing_message_detail' object.pk %}"
+                                       role="button">О сообщении</a>
+
+                                    <a class="btn btn-lg btn-block btn-outline-info"
+                                       href="{% url 'email_list:mailing_message_update' object.pk %}"
+                                       role="button">Изменить</a>
+                                    
+                                    <a class="btn btn-lg btn-block btn-outline-danger"
+                                   href="{% url 'email_list:mailing_message_delete' object.pk %}"
+                                   role="button">Удалить</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

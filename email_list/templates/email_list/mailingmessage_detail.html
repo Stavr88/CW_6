@@ -1,0 +1,31 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    {% if user == object.owner or user.is_superuser %}
+        <div class="container text-center">
+            <div class="col">
+                <h2 class="text-center">{{ object.email }}</h2>
+                <div class="container d-flex justify-content-center">
+                    <div>
+                        <h4>{{ object.subject }}</h4>
+                        <h4>{{ object.message|slice:300 }}</h4>
+                        <p>-------------</p>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+                    <div class="ms-5">
+
+                        <a class="p-2 btn btn-outline-primary"
+                           href="{% url 'email_list:mailing_message_update' object.pk %}">Изменить</a>
+
+                        <a class="p-2 btn btn-outline-danger"
+                           href="{% url 'email_list:mailing_message_delete' object.pk %}">Удалить</a>
+                        
+                        <a class="p-2 btn btn-outline-secondary"
+                           href="{% url 'email_list:mailing_message_list' %}">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

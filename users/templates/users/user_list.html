@@ -1,0 +1,39 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+    {% load my_tag %}
+    <div class="container">
+
+        <div class="row text-center">
+            {% for object in object_list %}
+                {% if user != object and not object.is_superuser %}
+                    {% if perms.users.view_list_user or user.is_superuser %}
+                        <div class="col-3">
+                            <div class="card mb-4 box-shadow">
+                                <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">{{ object.email }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">{{ object.phone }}</h1>
+                                    <img class="card-img-top" src="{% my_media object.avatar %}"
+                                         alt="Здесь должно быть изображение"
+                                         style="max-width: 300px; max-height: 300px; ">
+                                    <h1 class="card-title pricing-card-title">{{ object.country }}</h1>
+                                    <div class="d-grid gap-2 col-10 mx-auto">
+                                        <a class="btn btn-lg btn-block btn-outline-info"
+                                           href="{% url 'users:user_detail' object.pk %}"
+                                           role="button">О Пользователе</a>
+
+                                        <a class="btn btn-lg btn-block btn-outline-info"
+                                           href="{% url 'users:user_change' object.pk %}"
+                                           role="button">Заблокировать пользователя</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+[
+  {
+    "model": "blog.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "12121",
+      "body": "121231",
+      "preview": "blog/2024/10/Снимок_экрана_от_2024-10-24_19-40-41.png",
+      "date_published": "2024-10-24",
+      "count_views": 6
+    }
+  }
+]

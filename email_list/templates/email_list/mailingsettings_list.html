@@ -1,0 +1,57 @@
+{% extends 'email_list/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="col-12 mb-3">
+            {% if user.is_authenticated %}
+                <a class="btn btn-outline-primary" href="{% url 'email_list:mailing_settings_create' %}">Создать
+                    рассылку</a>
+            {% endif %}
+        </div>
+        <div class="row text-center">
+            {% for object in object_list %}
+                {% if user == object.owner or user.is_superuser or perms.email_list.stop_mailing %}
+                    <div class="col-3">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-header">
+                                <h4 class="my-0 font-weight-normal">{{ object.mail_message.subject }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                    <li>Начало: {{ object.start_datetime }}</li>
+                                    <li>Окончание: {{ object.end_datetime }}</li>
+                                </ul>
+                                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                    <li>{{ object.mail_message.message|slice:200 }}</li>
+                                </ul>
+                                <div class="d-grid gap-2 col-10 mx-auto">
+                                    <a class="btn btn-lg btn-block btn-outline-info"
+                                       href="{% url 'email_list:mailing_settings_detail' object.pk %}"
+                                       role="button">О рассылке</a>
+
+                                    <a class="btn btn-lg btn-block btn-outline-info"
+                                       href="{% url 'email_list:mailing_settings_update' object.pk %}"
+                                       role="button">Изменить</a>
+                                    {% if user == object.owner or user.is_superuser or not perms.email_list.stop_mailing %}
+                                        {% if object.attempt_pk %}
+                                            <a class="btn btn-lg btn-block btn-outline-success"
+                                               href="{% url 'email_list:attempt_detail' object.attempt_pk %}"
+                                               role="button">Попытки рассылки</a>
+                                        {% endif %}
+
+                                        <a class="btn btn-lg btn-block btn-outline-danger"
+                                           href="{% url 'email_list:mailing_settings_delete' object.pk %}"
+                                           role="button">Удалить</a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

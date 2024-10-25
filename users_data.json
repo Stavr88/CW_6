@@ -37,7 +37,32 @@
       "country": "Russian",
       "is_active": true,
       "token": null,
-      "groups": [],
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "password": "201023",
+      "last_login": "2024-10-25T17:32:50Z",
+      "is_superuser": false,
+      "first_name": "Сергей",
+      "last_name": "Балакерев",
+      "is_staff": true,
+      "date_joined": "2024-10-25T17:32:45Z",
+      "email": "test@mail.ru",
+      "phone": "89151234567",
+      "avatar": "",
+      "country": "Россия",
+      "is_active": true,
+      "token": null,
+      "groups": [
+        1
+      ],
       "user_permissions": []
     }
   }
